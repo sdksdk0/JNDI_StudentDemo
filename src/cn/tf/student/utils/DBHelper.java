@@ -386,7 +386,7 @@ public class DBHelper {
 							for (Method method : methods) {
 								mname=method.getName();  //获取当前循环的这个方法的方法名
 								
-								if(("set"+cname).equalsIgnoreCase(mname) && rs.getObject(cols.get(i))!=null){
+								if(("set"+cname).equalsIgnoreCase(mname) && rs.getObject(cname)!=null){
 									//如果找到了对应的setter方法，则激活这个方法，将这个列的值注入进去
 									ctypeName=rs.getObject(cols.get(i)).getClass().getSimpleName();
 										

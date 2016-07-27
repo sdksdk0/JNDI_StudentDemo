@@ -1,4 +1,3 @@
-<%@page import="cn.tf.student.utils.DBHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
@@ -9,60 +8,11 @@
 </head>
 
 <script src="js/jquery-3.1.0.js"  ></script>
-<body>
-
-	<fieldset>
-	
-		<legend>添加班级</legend>
-		　<form   method="post" >
-			班级名称:<input type="text"  name="cname"  id="cname"/>
-			<input type="button"  value="添加班级"   onclick="addClasses()" 　/><span></span>
-
-		</form>
-	</fieldset>
-	<fieldset>
-		<legend>添加学生</legend>
-		<form action=""  method="post"  id="add_student">
-		
-			班级:<select name="cid"  id="classesInfo" >
-			
-			
-			</select>
-			姓名:<input type="text"  name="sname"  id="sname" />
-			年龄:<input type="number" name="age"  min="1"  id="age" />
-			联系方式:<input type="text" name="tel" id="tel" />
-			图片:<input type="file" name="photo"  />
-			<input type="button"  value="添加"   onclick="addStudent()" />
-
-		</form>
-	
-	</fieldset>
-	<fieldset>
-		<legend>学生信息浏览</legend>
-		<table border="1px" cellspacing="0px" cellpaddig="0px" width="90%"  align="center"  style="border-collapse:collapse;"  >
-			<thead>
-				<tr>
-					<th>图片</th>
-					<th>学号</th>
-					<th>姓名</th>
-					<th>年龄</th>
-					<th>联系方式</th>
-					<th>所在班级</th>
-				</tr>
-			
-			</thead>
-			<tbody id="show_student"  align="center"  ></tbody>
-		
-		</table> 
-	
-	
-	</fieldset>
-
-
 	<script>
 	
 		function addClasses(){
 			var cname=$.trim($("#cname").val());
+			
 			if(cname==""){
 				$("#cname").next().next().text(" 请输入班级名称").css("color","red");
 			}else{
@@ -115,6 +65,8 @@
 			
 			
 			$.post("dostudent.jsp",{op:"addStudent",sname:sname,age:age,tel:tel,cid:cid},function(data){
+				
+		
 				if(data==null){
 					alert("数据添加失败");
 				}else{
@@ -124,7 +76,8 @@
 					$("#show_student").html("");
 
 					$.each(data,function(index,item){
-						$("#show_student").append("<tr><td></td><td>"+item.sid+"</td><td>"+item.sname+"</td><td>"+item.age+"</td><td>"+item.tel+"</td><td>"+item.cname+"</td></tr>");
+						$("#show_student").append("<tr><td></td><td>"+item.sid+"</td><td>"+ item.sname +"</td><td>"
+								+item.age+"</td><td>"+item.tel+"</td><td>"+ item.cname +"</td></tr>");
 							
 					});
 				}
@@ -133,6 +86,59 @@
 	
 	
 	</script>
+
+
+<body>
+
+	<fieldset>
+	
+		<legend>添加班级</legend>
+		　<form   method="post" >
+			班级名称:<input type="text"  name="cname"  id="cname"/>
+			<input type="button"  value="添加班级"   onclick="addClasses()" 　/><span></span>
+
+		</form>
+	</fieldset>
+	<fieldset>
+		<legend>添加学生</legend>
+		<form action=""  method="post"  id="add_student">
+		
+			班级:<select name="cid"  id="classesInfo" >
+			
+			
+			</select>
+			姓名:<input type="text"  name="sname"  id="sname" />
+			年龄:<input type="number" name="age"  min="1"  id="age" />
+			联系方式:<input type="text" name="tel" id="tel" />
+			图片:<input type="file" name="photo"  />
+			<input type="button"  value="添加"   onclick="addStudent()" />
+
+		</form>
+	
+	</fieldset>
+	<fieldset>
+		<legend>学生信息浏览</legend>
+		<table border="1px" cellspacing="0px" cellpaddig="0px" width="90%"  align="center"  style="border-collapse:collapse;"  >
+			<thead>
+				<tr>
+					<th>图片</th>
+					<th>学号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>联系方式</th>
+					<th>所在班级</th>
+				</tr>
+			
+			</thead>
+			<tbody id="show_student"  align="center"  ></tbody>
+		
+		</table> 
+	
+	
+	</fieldset>
+
+
+
 
 </body>
 </html>

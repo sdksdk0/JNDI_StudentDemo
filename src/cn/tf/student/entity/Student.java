@@ -68,10 +68,11 @@ public class Student {
 	}
 	@Override
 	public String toString() {
-		return "{\"sid\":\"" + sid + "\",\"cid\":\"" + cid + "\",\" sname\":\"" + sname
+		return "{\"sid\":\"" + sid + "\",\"cid\":\"" + cid + "\",\"sname\":\"" + sname
 				+ "\", \"age\":\"" + age + "\",\"tel\":\"" + tel + "\",\"photo\":\"" + photo
-				+ "\",\" cname\":\"" + cname + "\"}";
+				+ "\",\"cname\":\"" + cname + "\"}";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
