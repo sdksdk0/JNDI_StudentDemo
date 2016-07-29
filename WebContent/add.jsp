@@ -6,6 +6,9 @@
 <meta  charset="UTF-8">
 <title>图片上传</title>
 <script src="js/jquery-3.1.0.js"  ></script>
+<script src="js/showPic.js"  ></script>
+
+
 </head>
 
 <script>
@@ -50,10 +53,12 @@ $(function(){
 			姓名:<input type="text"  name="sname"  id="sname" />
 			年龄:<input type="number" name="age"  min="1"  id="age" />
 			联系方式:<input type="text" name="tel" id="tel" />
-			图片:<input type="file" name="photo"  />
+			图片:<input type="file" name="photo"  multiple="multiple"   onchange="setImagePreviews(this,'showPicDiv') "/>
 			<input type="button"  value="添加"   onclick="addStudent()" />
 
 		</form>
+		
+		<div id="showPicDiv" style="width:840px" ></div>
 
 </body>
 </html>

@@ -30,5 +30,28 @@ public class StudentDao {
 		
 	}
 	
+	public List<Student>  find(Integer pageNo,Integer pageSize){
+		String sql="select *from (select A.*,rownum rn  from (select s.*,cname from student s,classes c where s.cid=c.cid  order by sid) A "
+				+ " where rownum<=?)where rn>?";
+		List<String> param=new ArrayList<String>();
+		param.add(String.valueOf(pageNo*pageSize));
+		param.add(String.valueOf((pageNo-1)*pageSize));
+		
+		return db.find(sql, param,Student.class);
+	}
+	
+	public int getTotal(Integer cid){
+		String sql=null;
+		List<String> param=new ArrayList<String>();
+		if(cid!=null){
+			sql="select count(sid) as count from student s ,classes c where s.cid=c.cid and cid=?";
+			param.add(String.valueOf(cid));
+		}else{
+			sql="select count(sid) as count from student s,classes c where s.cid=c.cid";
+		}
+		double count=db.doSelectFunction(sql, param);
+		
+		return (int) count;
+	}
 	
 }

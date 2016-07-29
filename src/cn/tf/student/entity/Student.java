@@ -40,9 +40,26 @@ public class Student {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	
 	public String getPhoto() {
-		return photo;
+		
+		if(photo!=null && photo.contains(",")){
+			String[] str=photo.split(",");
+			StringBuffer sb=new StringBuffer();
+			for(String s:str){
+				sb.append("<img src='../"+s+"' />&nbsp;");
+			}
+			return sb.toString();
+			
+		}else if(photo !=null && !"".equals(photo)){
+			return "<img src='../"+photo+"' />";
+		}else{
+			return "";
+		}
+
 	}
+	
+	
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}

@@ -128,13 +128,9 @@
 					<th>联系方式</th>
 					<th>所在班级</th>
 				</tr>
-			
 			</thead>
 			<tbody id="show_student"  align="center"  ></tbody>
-		
 		</table> 
-	
-	
 	</fieldset>
 
 
