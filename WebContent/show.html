@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="js/jquery-3.1.0.js"  ></script>
+<script>
+
+	var pageNo=1;
+	var flag=true;
+	$(function(){
+		pageNo=1;
+		flag=true;
+		findStudentByPage(pageNo,5);
+		$("#stuInfo").scroll(function(){
+			if($(this).height()+$(this).scrollTop()==$("#innerInfo").outerHeight(true)){
+				if(flag){
+					findStudentByPage(++pageNo,5);
+				}
+			}
+		});
+	});
+	
+	function findStudentByPage(pageNo,pageSize){
+		$.post("doshow.jsp",{op:2,pageNo:pageNo,pageSize:pageSize},function(data){
+			if(data.studentInfo.length>0){
+			
+			var str="";
+				$.each(data.studentInfo,function(index,item){
+					str+="<tr><td>"+item.photo+"</td><td>"+item.sid+"</td><td>"+ 
+					item.sname+"</td><td>"+item.age+"</td><td>"+item.tel+"</td><td>"+item.cname+"</td><td>删除</td></tr>";
+				});
+				$("#show_student").append($(str));
+			
+			}else{
+				flag=false;
+				$("#stuInfo").append($("<center><h1>暂无数据了...</h1></center>"));
+			}
+			
+			
+		},"json");
+		
+	}
+
+
+
+</script>
+
+</head>
+<body>
+
+	<div style="height:500px;width:100%;overflow-y:scroll"  id="stuInfo" >
+		<table  id="innerInfo" border="1px" cellspacing="0px" cellpaddig="0px" width="90%"  align="center"  style="border-collapse:collapse;"  >
+			<thead>
+				<tr>
+					<th>图片</th>
+					<th>学号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>联系方式</th>
+					<th>所在班级</th>
+					<th>操作</th>
+				</tr>
+			
+			</thead>
+			<tbody id="show_student"  align="center"  ></tbody>
+		
+		</table> 
+	</div>
+
+</body>
+</html>

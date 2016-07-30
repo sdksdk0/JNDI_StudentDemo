@@ -20,9 +20,13 @@
 	
 	StudentDao studentDao=new StudentDao();
 	if(studentDao.add(map.get("cid"),map.get("sname"),map.get("age"),map.get("tel"),map.get("photo"))>0){
-		response.sendRedirect("show.jsp");
+		//response.sendRedirect("show.jsp");
+		
+		out.print(1);
 	}else{
-		response.sendRedirect("add.jsp");
+		//response.sendRedirect("add.jsp");
+		out.print(0);
+		
 	}
 	
 

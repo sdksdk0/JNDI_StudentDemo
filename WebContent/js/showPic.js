@@ -2,7 +2,9 @@
 function setImagePreviews(imagesObj,divid) {
       
         var dd = document.getElementById(divid);
-        divid.innerHTML = "";
+        
+        dd.style.display="block";
+        dd.innerHTML = "";
         var fileList = imagesObj.files;
         for (var i = 0; i < fileList.length; i++) {            
             dd.innerHTML += "<div style='float:left' > <img id='img" + i + "'  /> </div>";
